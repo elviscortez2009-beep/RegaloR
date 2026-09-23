@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para Rosa 💜</title>
+
+<style>
+
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(199,125,255,0.35),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(106,13,173,0.45),
+            transparent 35%
+        ),
+        linear-gradient(
+            120deg,
+            #16001f,
+            #4b0870,
+            #8e2de2,
+            #3b0764
+        );
+
+    background-size: 200% 200%;
+
+    animation: fondoMagico 15s ease infinite;
+
+    min-height: 100vh;
+}
+
+@keyframes fondoMagico {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+
+/* =========================
+   LUCES DEL FONDO
+========================= */
+
+.luz {
+    position: fixed;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba(224,170,255,0.22),
+        rgba(150,50,255,0.08),
+        transparent 70%
+    );
+
+    filter: blur(15px);
+
+    pointer-events: none;
+    z-index: -1;
+
+    animation: moverLuz 18s ease-in-out infinite alternate;
+}
+
+.luz1 {
+    top: 5%;
+    left: -80px;
+}
+
+.luz2 {
+    right: -80px;
+    top: 40%;
+    animation-delay: 4s;
+    animation-duration: 22s;
+}
+
+.luz3 {
+    bottom: -100px;
+    left: 30%;
+    animation-delay: 8s;
+    animation-duration: 20s;
+}
+
+@keyframes moverLuz {
+
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(120px, 80px) scale(1.3);
+    }
+
+    100% {
+        transform: translate(-80px, 150px) scale(0.9);
+    }
+
+}
+
+
+/* =========================
+   PANTALLA DE CONTRASEÑA
+========================= */
+
+#bloqueo {
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(199,125,255,0.25),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #16001f,
+            #4b0870,
+            #6a0dad
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.caja-password {
+
+    width: 90%;
+    max-width: 400px;
+
+    padding: 35px 25px;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,0.10);
+
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255,255,255,0.18);
+
+    box-shadow:
+        0 0 30px rgba(199,125,255,0.35),
+        inset 0 0 25px rgba(255,255,255,0.05);
+}
+
+.caja-password h1 {
+
+    font-size: 32px;
+
+    text-shadow:
+        0 0 10px #fff,
+        0 0 25px #c77dff;
+}
+
+.caja-password p {
+    font-size: 17px;
+}
+
+.caja-password input {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    margin: 15px 0;
+
+    text-align: center;
+
+    font-size: 18px;
+
+    outline: none;
+}
+
+.caja-password button {
+
+    padding: 13px 25px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background: linear-gradient(
+        135deg,
+        #9d4edd,
+        #c77dff
+    );
+
+    color: white;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 15px rgba(199,125,255,0.5);
+
+    transition: 0.3s;
+}
+
+.caja-password button:hover {
+
+    transform: scale(1.05);
+
+}
+
+#error {
+
+    color: #ffd6ff;
+
+    margin-top: 10px;
+
+}
+
+
+/* =========================
+   CONTENIDO
+========================= */
+
+#contenido {
+    display: none;
+}
+
+header {
+
+    padding: 60px 20px 30px;
+
+}
+
+header h1 {
+
+    font-size: 44px;
+
+    text-shadow:
+        0 0 10px white,
+        0 0 25px #c77dff,
+        0 0 45px #9d4edd;
+
+    animation: tituloBrillo 3s ease-in-out infinite alternate;
+
+}
+
+@keyframes tituloBrillo {
+
+    from {
+        text-shadow:
+            0 0 8px white,
+            0 0 20px #c77dff;
+    }
+
+    to {
+        text-shadow:
+            0 0 15px white,
+            0 0 35px #c77dff,
+            0 0 60px #9d4edd;
+    }
+
+}
+
+header p {
+
+    font-size: 20px;
+
+}
+
+
+/* =========================
+   SECCIONES
+========================= */
+
+.seccion {
+
+    width: 90%;
+    max-width: 700px;
+
+    margin: 35px auto;
+
+    padding: 28px;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.14),
+            rgba(255,255,255,0.06)
+        );
+
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.25),
+        inset 0 0 25px rgba(255,255,255,0.04);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* Brillo que cruza las tarjetas */
+
+.seccion::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -100%;
+    left: -50%;
+
+    width: 200%;
+    height: 50%;
+
+    background: linear-gradient(
+        transparent,
+        rgba(255,255,255,0.08),
+        transparent
+    );
+
+    transform: rotate(20deg);
+
+    animation: brilloTarjeta 8s linear infinite;
+
+    pointer-events: none;
+}
+
+@keyframes brilloTarjeta {
+
+    0% {
+        top: -100%;
+    }
+
+    100% {
+        top: 150%;
+    }
+
+}
+
+
+.seccion h2 {
+
+    color: #f1cfff;
+
+    font-size: 28px;
+
+    text-shadow:
+        0 0 10px rgba(199,125,255,0.8);
+
+}
+
+.seccion p {
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+}
+
+.seccion img {
+
+    width: 100%;
+
+    max-height: 450px;
+
+    object-fit: cover;
+
+    border-radius: 20px;
+
+    margin-top: 20px;
+
+    box-shadow:
+        0 0 20px rgba(199,125,255,0.35);
+
+    transition: 0.4s;
+
+}
+
+.seccion img:hover {
+
+    transform: scale(1.02);
+
+}
+
+.poema {
+
+    font-style: italic;
+
+    font-size: 19px !important;
+
+}
+
+
+/* =========================
+   CORAZONES
+========================= */
+
+.corazon {
+
+    position: fixed;
+
+    bottom: -30px;
+
+    animation:
+        subir 7s linear forwards;
+
+    pointer-events: none;
+
+    z-index: 10;
+
+    filter:
+        drop-shadow(
+            0 0 8px rgba(255,150,255,0.7)
+        );
+}
+
+@keyframes subir {
+
+    0% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================
+   ESTRELLAS
+========================= */
+
+.estrella {
+
+    position: fixed;
+
+    color: white;
+
+    animation:
+        brillo 2s infinite alternate;
+
+    pointer-events: none;
+
+    text-shadow:
+        0 0 8px white,
+        0 0 15px #c77dff;
+
+    z-index: 1;
+}
+
+@keyframes brillo {
+
+    from {
+
+        opacity: 0.15;
+
+        transform:
+            scale(0.7)
+            rotate(0deg);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1.3)
+            rotate(180deg);
+    }
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    padding: 50px 20px;
+
+    font-size: 20px;
+
+    text-shadow:
+        0 0 10px #c77dff;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- LUCES ANIMADAS -->
+
+<div class="luz luz1"></div>
+<div class="luz luz2"></div>
+<div class="luz luz3"></div>
+
+
+<!-- =========================
+     CONTRASEÑA
+========================= -->
+
+<div id="bloqueo">
+
+    <div class="caja-password">
+
+        <h1>💜 Para Rosa 💜</h1>
+
+        <p>
+            Este pequeño regalo tiene una sorpresa para ti ✨
+        </p>
+
+        <input
+            type="password"
+            id="clave"
+            placeholder="Escribe la contraseña"
+        >
+
+        <button onclick="entrar()">
+            Abrir regalo 💌
+        </button>
+
+        <div id="error"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     CONTENIDO
+========================= -->
+
+<div id="contenido">
+
+
+<header>
+
+    <h1>💜 Para Rosa 💜</h1>
+
+    <p>
+        Algunas palabras para una persona muy especial ✨
+    </p>
+
+</header>
+
+
+<!-- TEXTO -->
+
+<section class="seccion">
+
+    <h2>✨ Te quiero ✨</h2>
+
+    <p>
+        Rosa, quería hacer algo diferente para ti.
+        No solamente decirte unas palabras,
+        sino crear un pequeño lugar donde pudieras
+        encontrarlas juntas.
+    </p>
+
+    <p>
+        Te quiero por las pequeñas cosas,
+        por las sonrisas inesperadas,
+        por los momentos sencillos
+        y por todos esos recuerdos
+        que poco a poco se vuelven especiales.
+        💜
+    </p>
+
+    <img src="foto1.jpg">
+
+</section>
+
+
+<!-- POEMA 1 -->
+
+<section class="seccion">
+
+    <h2>🌹 Donde estés tú 🌹</h2>
+
+    <p class="poema">
+
+        Si pudiera escribir en el cielo<br>
+        todo aquello que siento por ti,<br>
+        escribiría un millón de versos<br>
+        para decirte lo importante que eres para mí.<br><br>
+
+        Si pudiera guardar las estrellas<br>
+        y ponerlas junto a tu ventana,<br>
+        elegiría las más bonitas<br>
+        para iluminar cada mañana.<br><br>
+
+        Porque cuando pienso en tu sonrisa<br>
+        hasta la tristeza parece desaparecer,<br>
+        y entre tantas cosas bonitas de la vida<br>
+        tú eres alguien que me gusta querer.<br><br>
+
+        No prometo que el mundo sea perfecto,<br>
+        ni que nunca exista algún dolor,<br>
+        pero sí puedo decirte sinceramente<br>
+        que mis palabras llevan cariño y corazón. 💜
+
+    </p>
+
+    <img src="foto2.jpg">
+
+</section>
+
+
+<!-- POEMA 2 -->
+
+<section class="seccion">
+
+    <h2>✨ Una persona especial ✨</h2>
+
+    <p class="poema">
+
+        Hay personas que llegan lentamente<br>
+        y terminan quedándose en el corazón,<br>
+        personas que con una simple sonrisa<br>
+        pueden cambiar una ocasión.<br><br>
+
+        Tú tienes algo que no sé explicar,<br>
+        algo bonito difícil de describir,<br>
+        porque incluso en un día cualquiera<br>
+        haces que sea bonito existir.<br><br>
+
+        Y si algún día dudas de lo especial que eres,<br>
+        recuerda estas palabras que escribí para ti:<br>
+        entre tantas personas en este mundo,<br>
+        hay alguien que siempre pensará en ti. 💜<br><br>
+
+        Tal vez las palabras sean pequeñas<br>
+        comparadas con todo lo que quiero expresar,<br>
+        pero espero que cuando leas esto<br>
+        puedas sentir el cariño que quise dejar.
+
+    </p>
+
+    <img src="foto3.jpg">
+
+</section>
+
+
+<!-- POEMA 3 -->
+
+<section class="seccion">
+
+    <h2>🌙 Si pudiera elegir 🌙</h2>
+
+    <p class="poema">
+
+        Si pudiera elegir un recuerdo,<br>
+        elegiría uno donde podamos sonreír,<br>
+        uno de esos momentos sencillos<br>
+        que dan ganas de volver a repetir.<br><br>
+
+        Si pudiera elegir una estrella,<br>
+        elegiría la que más pudiera brillar,<br>
+        y escribiría tu nombre en ella<br>
+        para que nunca dejara de iluminar.<br><br>
+
+        Si pudiera elegir una palabra<br>
+        para resumir todo lo que siento aquí,<br>
+        quizá elegiría simplemente "cariño",<br>
+        porque eso es lo que nace cuando pienso en ti.<br><br>
+
+        Y si pudiera escribir una última línea,<br>
+        antes de terminar este pequeño poema,<br>
+        escribiría con todo mi corazón:<br>
+        Rosa, eres una persona realmente especial. 💜
+
+    </p>
+
+    <img src="foto4.jpg">
+
+</section>
+
+
+<!-- POEMA FINAL -->
+
+<section class="seccion">
+
+    <h2>💌 Para ti 💌</h2>
+
+    <p class="poema">
+
+        No sé si existen palabras suficientes<br>
+        para explicar todo lo que quiero decir,<br>
+        pero mientras pueda escribirte algo bonito,<br>
+        siempre habrá una razón para sonreír.<br><br>
+
+        Que nunca olvides que eres valiosa,<br>
+        que tienes una forma especial de brillar,<br>
+        y que incluso en los días más simples<br>
+        hay razones para volver a comenzar.<br><br>
+
+        Este pequeño regalo no es perfecto,<br>
+        pero cada palabra fue escrita con emoción,<br>
+        porque detrás de cada letra hay un deseo:<br>
+        regalarte un poquito de mi corazón. 💜
+
+    </p>
+
+</section>
+
+
+<footer>
+
+    💜 Gracias por leerlo, Rosa 💜
+
+    <br><br>
+
+    ✨ Espero que estas palabras te hagan sonreír. ✨
+
+</footer>
+
+
+</div>
+
+
+<!-- =========================
+     MÚSICA
+========================= -->
+
+<audio id="musica" loop>
+
+    <source
+        src="musica.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<script>
+
+
+/* =========================
+   CONTRASEÑA
+========================= */
+
+function entrar() {
+
+    const clave =
+        document.getElementById("clave").value;
+
+    const error =
+        document.getElementById("error");
+
+
+    if (clave === "20082009") {
+
+        document.getElementById("bloqueo")
+            .style.display = "none";
+
+        document.getElementById("contenido")
+            .style.display = "block";
+
+
+        const musica =
+            document.getElementById("musica");
+
+        musica.play().catch(() => {});
+
+    }
+
+    else {
+
+        error.innerHTML =
+            "❌ Contraseña incorrecta";
+
+    }
+
+}
+
+
+/* =========================
+   CORAZONES
+========================= */
+
+setInterval(() => {
+
+    const corazon =
+        document.createElement("div");
+
+    corazon.className = "corazon";
+
+    corazon.innerHTML =
+        ["💜","💗","💖","💕","💞"]
+        [Math.floor(Math.random() * 5)];
+
+
+    corazon.style.left =
+        Math.random() * 100 + "vw";
+
+
+    corazon.style.fontSize =
+        (15 + Math.random() * 20) + "px";
+
+
+    document.body.appendChild(corazon);
+
+
+    setTimeout(() => {
+
+        corazon.remove();
+
+    }, 7000);
+
+}, 700);
+
+
+/* =========================
+   ESTRELLAS
+========================= */
+
+setInterval(() => {
+
+    const estrella =
+        document.createElement("div");
+
+    estrella.className =
+        "estrella";
+
+    estrella.innerHTML = "✦";
+
+
+    estrella.style.left =
+        Math.random() * 100 + "vw";
+
+
+    estrella.style.top =
+        Math.random() * 100 + "vh";
+
+
+    estrella.style.fontSize =
+        (8 + Math.random() * 15) + "px";
+
+
+    document.body.appendChild(estrella);
+
+
+    setTimeout(() => {
+
+        estrella.remove();
+
+    }, 2500);
+
+}, 500);
+
+
+</script>
+
+</body>
+
+</html> 
