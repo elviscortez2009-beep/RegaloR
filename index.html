@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💜 Para Rosa 💜</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Georgia,"Times New Roman",serif;
+    background:#020006;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* GALAXIA */
+#galaxia{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:-5;
+    background:#020006;
+}
+
+.luz{
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:radial-gradient(
+        circle,
+        rgba(190,90,255,.20),
+        rgba(90,0,150,.08),
+        transparent 70%
+    );
+    filter:blur(40px);
+    pointer-events:none;
+    z-index:-3;
+    animation:moverLuz 12s infinite alternate ease-in-out;
+}
+
+.luz1{
+    top:-150px;
+    left:-150px;
+}
+
+.luz2{
+    bottom:-180px;
+    right:-150px;
+    animation-delay:4s;
+}
+
+@keyframes moverLuz{
+    0%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(120px,80px) scale(1.2);}
+    100%{transform:translate(-60px,130px) scale(.9);}
+}
+
+/* CONTRASEÑA */
+#bloqueo{
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(100,0,160,.35),
+            rgba(0,0,0,.97)
+        );
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    padding:20px;
+}
+
+.caja-clave{
+    width:100%;
+    max-width:390px;
+    padding:35px 25px;
+    text-align:center;
+    background:rgba(20,5,35,.75);
+    border:1px solid rgba(210,140,255,.45);
+    border-radius:25px;
+    box-shadow:
+        0 0 30px rgba(170,60,255,.3),
+        inset 0 0 25px rgba(150,50,255,.05);
+    backdrop-filter:blur(15px);
+    animation:entrada 1.2s ease;
+}
+
+@keyframes entrada{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.95);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.corazon-clave{
+    font-size:55px;
+    margin-bottom:10px;
+    animation:latido 1.5s infinite;
+}
+
+@keyframes latido{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.15);}
+}
+
+.caja-clave h1{
+    color:#e7b7ff;
+    margin-bottom:10px;
+    text-shadow:0 0 15px #9d35ff;
+}
+
+.caja-clave p{
+    color:#ddd;
+    margin-bottom:22px;
+    line-height:1.5;
+}
+
+#clave{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #9d4edd;
+    outline:none;
+    background:rgba(0,0,0,.55);
+    color:white;
+    text-align:center;
+    font-size:18px;
+}
+
+#clave::placeholder{
+    color:#aaa;
+}
+
+#botonAbrir{
+    margin-top:15px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(
+        135deg,
+        #7b2cbf,
+        #c77dff
+    );
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 0 15px rgba(190,90,255,.5);
+    transition:.3s;
+}
+
+#botonAbrir:hover{
+    transform:scale(1.03);
+}
+
+#error{
+    color:#ff8bba;
+    margin-top:12px;
+    display:none;
+}
+
+/* CONTENIDO */
+#contenido{
+    display:none;
+    position:relative;
+    z-index:2;
+    min-height:100vh;
+}
+
+header{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px 20px;
+}
+
+header h1{
+    font-size:clamp(38px,10vw,75px);
+    color:#e9c4ff;
+    text-shadow:
+        0 0 10px #a855f7,
+        0 0 30px #7b2cbf,
+        0 0 60px rgba(168,85,247,.5);
+    animation:aparecer 2s ease;
+}
+
+header p{
+    margin-top:18px;
+    font-size:19px;
+    color:#ddd;
+    max-width:650px;
+    line-height:1.7;
+    animation:aparecer 3s ease;
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* DIAMANTE BLANCO */
+.diamante{
+    width:min(85vw,400px);
+    margin:20px auto 70px;
+    padding:12px;
+    border-radius:25px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(230,190,255,.35);
+    box-shadow:
+        0 0 25px rgba(200,120,255,.35),
+        0 0 70px rgba(130,50,255,.15);
+    backdrop-filter:blur(8px);
+    animation:flotar 5s ease-in-out infinite;
+}
+
+.imagen-diamante{
+    display:block;
+    width:100%;
+    max-height:520px;
+    object-fit:contain;
+    border-radius:18px;
+}
+
+@keyframes flotar{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+}
+
+/* SECCIONES */
+.seccion{
+    width:92%;
+    max-width:850px;
+    margin:0 auto 80px;
+    padding:30px 22px;
+    background:rgba(15,5,25,.62);
+    border:1px solid rgba(200,130,255,.22);
+    border-radius:25px;
+    box-shadow:0 0 30px rgba(100,20,160,.18);
+    backdrop-filter:blur(10px);
+    text-align:center;
+}
+
+.seccion h2{
+    color:#dda8ff;
+    font-size:clamp(26px,7vw,38px);
+    margin-bottom:20px;
+    text-shadow:0 0 10px rgba(190,100,255,.6);
+}
+
+.seccion p{
+    color:#f1f1f1;
+    font-size:18px;
+    line-height:1.9;
+    white-space:pre-line;
+}
+
+.foto{
+    width:100%;
+    max-width:600px;
+    margin:28px auto 0;
+    display:block;
+    border-radius:20px;
+    border:2px solid rgba(210,150,255,.35);
+    box-shadow:0 0 25px rgba(160,60,255,.3);
+    transition:.4s;
+}
+
+.foto:hover{
+    transform:scale(1.02);
+}
+
+/* FOTO 4 */
+.seccion-foto4{
+    margin-top:-20px;
+}
+
+/* FINAL */
+.final{
+    width:92%;
+    max-width:850px;
+    margin:0 auto;
+    padding:60px 25px;
+    text-align:center;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(90,20,130,.45),
+            rgba(20,0,35,.65)
+        );
+    border-radius:30px;
+    border:1px solid rgba(220,170,255,.3);
+    box-shadow:0 0 40px rgba(160,70,255,.25);
+}
+
+.final h2{
+    font-size:42px;
+    color:#e7bdff;
+    text-shadow:0 0 15px #9d4edd;
+}
+
+.final p{
+    margin-top:25px;
+    font-size:19px;
+    line-height:1.9;
+    color:#eee;
+}
+
+.firma{
+    margin-top:35px;
+    font-size:22px;
+    color:#d8a7ff;
+    font-style:italic;
+}
+
+/* CORAZONES */
+.corazon{
+    position:fixed;
+    bottom:-30px;
+    font-size:20px;
+    pointer-events:none;
+    z-index:5;
+    animation:subir 8s linear forwards;
+    opacity:.75;
+}
+
+@keyframes subir{
+    0%{
+        transform:
+            translateY(0)
+            translateX(0)
+            rotate(0deg);
+        opacity:0;
+    }
+
+    10%{
+        opacity:.8;
+    }
+
+    100%{
+        transform:
+            translateY(-110vh)
+            translateX(var(--movimiento))
+            rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* ESTRELLAS */
+.estrella{
+    position:fixed;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:-1;
+    animation:brillar var(--duracion) infinite alternate;
+}
+
+@keyframes brillar{
+    from{
+        opacity:.15;
+        transform:scale(.7);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.7);
+    }
+}
+
+/* MÚSICA */
+.musica{
+    position:fixed;
+    bottom:18px;
+    right:18px;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    border:1px solid rgba(220,170,255,.5);
+    background:rgba(60,10,90,.75);
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+    z-index:100;
+    box-shadow:0 0 20px rgba(180,80,255,.4);
+}
+
+/* CELULAR */
+@media(max-width:600px){
+
+    header{
+        min-height:90vh;
+    }
+
+    header h1{
+        font-size:43px;
+    }
+
+    header p{
+        font-size:16px;
+    }
+
+    .seccion{
+        padding:25px 17px;
+        margin-bottom:55px;
+    }
+
+    .seccion p{
+        font-size:16px;
+        line-height:1.8;
+    }
+
+    .final{
+        padding:45px 18px;
+    }
+
+    .final h2{
+        font-size:34px;
+    }
+
+    .final p{
+        font-size:17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="galaxia"></canvas>
+
+<div class="luz luz1"></div>
+<div class="luz luz2"></div>
+
+
+<!-- CONTRASEÑA -->
+
+<div id="bloqueo">
+
+    <div class="caja-clave">
+
+        <div class="corazon-clave">
+            💜
+        </div>
+
+        <h1>Para Rosa</h1>
+
+        <p>
+            Hay algo preparado especialmente para ti.
+            <br>
+            🔐 Escribe la contraseña para abrirlo.
+        </p>
+
+        <input
+            type="password"
+            id="clave"
+            placeholder="Contraseña"
+            autocomplete="off"
+        >
+
+        <button id="botonAbrir">
+            💌 Abrir regalo
+        </button>
+
+        <p id="error">
+            Contraseña incorrecta 💔
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- CONTENIDO -->
+
+<div id="contenido">
+
+<header>
+
+    <h1>💜 Para Rosa 💜</h1>
+
+    <p>
+        Algunas personas llegan a nuestra vida
+        y dejan recuerdos que merecen ser guardados
+        en un lugar especial.
+    </p>
+
+</header>
+
+
+<!-- FOTO 5: DIAMANTE BLANCO -->
+
+<div class="diamante">
+
+    <img
+        src="foto5.jpg"
+        class="imagen-diamante"
+        alt="Diamante Blanco"
+    >
+
+</div>
+
+
+<!-- FOTO 1 -->
+
+<section class="seccion">
+
+    <h2>✨ Te quiero ✨</h2>
+
+    <p>
+No sé explicar con palabras
+todo lo que puedo sentir,
+pero cuando pienso en ti
+algo vuelve a sonreír.
+
+Hay personas que pasan,
+otras dejan una huella,
+y entre tantas historias
+tú terminaste siendo una de ellas.
+
+No prometo un mundo perfecto,
+ni palabras que suenen de más,
+solo quiero que recuerdes
+que alguien te aprecia de verdad.
+
+Y si algún día lees esto
+cuando todo parezca cambiar,
+recuerda que hay recuerdos
+que siempre saben regresar.
+    </p>
+
+    <img
+        src="foto1.jpg"
+        class="foto"
+        alt="Foto especial 1"
+    >
+
+</section>
+
+
+<!-- FOTO 2 -->
+
+<section class="seccion">
+
+    <h2>🌹 Donde estés tú 🌹</h2>
+
+    <p>
+Donde estés tú,
+hay una historia que contar,
+una pequeña razón
+para volver a recordar.
+
+Tu forma de ser,
+tu manera de mirar,
+son detalles pequeños
+que se pueden extrañar.
+
+No hace falta decir demasiado,
+ni escribir una canción,
+a veces basta un recuerdo
+para alegrar el corazón.
+
+Y aunque el tiempo avance
+sin detenerse jamás,
+hay momentos especiales
+que no se borran fácilmente.
+    </p>
+
+    <img
+        src="foto2.jpg"
+        class="foto"
+        alt="Foto especial 2"
+    >
+
+</section>
+
+
+<!-- FOTO 3 -->
+
+<section class="seccion">
+
+    <h2>✨ Una persona especial ✨</h2>
+
+    <p>
+Entre millones de personas
+existen algunas diferentes,
+personas que sin darse cuenta
+se quedan en nuestra mente.
+
+Quizás no sepan cuánto valen,
+quizás nunca lo imaginaron,
+pero sus pequeños detalles
+muchas veces nos marcaron.
+
+Por eso hice este pequeño regalo,
+no para decir demasiado,
+sino para dejar escrito
+algo bonito y sincero.
+
+Gracias por cada recuerdo,
+por cada momento compartido,
+y por formar parte
+de una etapa que no olvido.
+    </p>
+
+    <img
+        src="foto3.jpg"
+        class="foto"
+        alt="Foto especial 3"
+    >
+
+</section>
+
+
+<!-- FOTO 4 -->
+
+<section class="seccion seccion-foto4">
+
+    <h2>🌙 Un recuerdo más 🌙</h2>
+
+    <p>
+Hay recuerdos que parecen pequeños,
+pero con el tiempo se vuelven grandes.
+
+Una fotografía,
+una sonrisa,
+un momento,
+una palabra...
+
+Todo puede convertirse
+en una pequeña parte
+de una historia especial.
+
+Por eso también quería
+guardar este recuerdo aquí. 💜
+    </p>
+
+    <img
+        src="foto4.jpg"
+        class="foto"
+        alt="Foto especial 4"
+    >
+
+</section>
+
+
+<!-- FINAL -->
+
+<section class="final">
+
+    <h2>💌 Para ti 💌</h2>
+
+    <p>
+        Rosa, hice esta pequeña página
+        pensando en todos esos momentos
+        que merecen ser recordados.
+
+        No es algo perfecto,
+        pero está hecho con mucho cariño
+        y con la intención de regalarte
+        un pequeño momento bonito.
+
+        Espero que cuando la veas
+        puedas sonreír aunque sea un poquito. 💜
+    </p>
+
+    <div class="firma">
+        Con cariño,<br>
+        Elvis 💜
+    </div>
+
+</section>
+
+<br><br><br>
+
+</div>
+
+
+<!-- MÚSICA -->
+
+<audio id="musica" loop>
+
+    <source
+        src="musica.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+<button
+    class="musica"
+    id="botonMusica"
+    title="Música"
+>
+    🎵
+</button>
+
+
+<script>
+
+/* CONTRASEÑA */
+
+const botonAbrir =
+    document.getElementById("botonAbrir");
+
+const clave =
+    document.getElementById("clave");
+
+const bloqueo =
+    document.getElementById("bloqueo");
+
+const contenido =
+    document.getElementById("contenido");
+
+const error =
+    document.getElementById("error");
+
+const musica =
+    document.getElementById("musica");
+
+
+function abrirRegalo(){
+
+    if(clave.value === "20082009"){
+
+        bloqueo.style.display = "none";
+
+        contenido.style.display = "block";
+
+        error.style.display = "none";
+
+        musica.play().catch(() => {});
+
+    }else{
+
+        error.style.display = "block";
+
+        clave.value = "";
+
+        clave.focus();
+
+    }
+
+}
+
+
+botonAbrir.addEventListener(
+    "click",
+    abrirRegalo
+);
+
+
+clave.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+            abrirRegalo();
+        }
+
+    }
+);
+
+
+/* BOTÓN MÚSICA */
+
+const botonMusica =
+    document.getElementById("botonMusica");
+
+let reproduciendo = false;
+
+
+botonMusica.addEventListener(
+    "click",
+    function(){
+
+        if(reproduciendo){
+
+            musica.pause();
+
+            botonMusica.textContent = "🎵";
+
+            reproduciendo = false;
+
+        }else{
+
+            musica.play().then(() => {
+
+                botonMusica.textContent = "🔊";
+
+                reproduciendo = true;
+
+            }).catch(() => {
+
+                alert(
+                    "No se pudo reproducir la música."
+                );
+
+            });
+
+        }
+
+    }
+);
+
+
+/* GALAXIA */
+
+const canvas =
+    document.getElementById("galaxia");
+
+const ctx =
+    canvas.getContext("2d");
+
+let estrellas = [];
+let particulas = [];
+
+let ancho;
+let alto;
+
+
+function ajustarCanvas(){
+
+    ancho =
+        canvas.width =
+        window.innerWidth *
+        devicePixelRatio;
+
+    alto =
+        canvas.height =
+        window.innerHeight *
+        devicePixelRatio;
+
+    canvas.style.width =
+        window.innerWidth + "px";
+
+    canvas.style.height =
+        window.innerHeight + "px";
+
+    ctx.setTransform(
+        devicePixelRatio,
+        0,
+        0,
+        devicePixelRatio,
+        0,
+        0
+    );
+}
+
+
+ajustarCanvas();
+
+window.addEventListener(
+    "resize",
+    ajustarCanvas
+);
+
+
+/* ESTRELLAS */
+
+function crearEstrellas(){
+
+    estrellas = [];
+
+    const cantidad =
+        Math.min(
+            300,
+            Math.floor(
+                window.innerWidth *
+                window.innerHeight /
+                5000
+            )
+        );
+
+    for(let i=0;i<cantidad;i++){
+
+        estrellas.push({
+
+            x:
+                Math.random() *
+                window.innerWidth,
+
+            y:
+                Math.random() *
+                window.innerHeight,
+
+            radio:
+                Math.random() * 1.5 + .2,
+
+            brillo:
+                Math.random(),
+
+            velocidad:
+                Math.random() * .02 + .005
+
+        });
+
+    }
+}
+
+
+crearEstrellas();
+
+
+/* PARTÍCULAS */
+
+function crearParticulas(){
+
+    particulas = [];
+
+    const cantidad = 1100;
+
+    for(let i=0;i<cantidad;i++){
+
+        const angulo =
+            Math.random() *
+            Math.PI * 2;
+
+        const distancia =
+            Math.pow(
+                Math.random(),
+                .55
+            ) *
+            Math.min(
+                window.innerWidth,
+                window.innerHeight
+            ) *
+            .65;
+
+        particulas.push({
+
+            angulo:angulo,
+
+            distancia:distancia,
+
+            velocidad:
+                .00015 +
+                Math.random() *
+                .0004,
+
+            tamaño:
+                Math.random() *
+                1.5 + .2,
+
+            opacidad:
+                Math.random() *
+                .7 + .15
+
+        });
+
+    }
+
+}
+
+
+crearParticulas();
+
+
+/* DIBUJAR */
+
+function dibujarGalaxia(){
+
+    ctx.clearRect(
+        0,
+        0,
+        window.innerWidth,
+        window.innerHeight
+    );
+
+    const centroX =
+        window.innerWidth / 2;
+
+    const centroY =
+        window.innerHeight / 2;
+
+
+    estrellas.forEach(
+        estrella => {
+
+            estrella.brillo +=
+                estrella.velocidad;
+
+            const alpha =
+                .3 +
+                Math.sin(
+                    estrella.brillo
+                ) * .7;
+
+            ctx.beginPath();
+
+            ctx.arc(
+                estrella.x,
+                estrella.y,
+                estrella.radio,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fillStyle =
+                `rgba(255,255,255,${alpha})`;
+
+            ctx.fill();
+
+        }
+    );
+
+
+    particulas.forEach(
+        p => {
+
+            p.angulo += p.velocidad;
+
+            const giro =
+                p.angulo +
+                p.distancia *
+                .004;
+
+            const x =
+                centroX +
+                Math.cos(giro) *
+                p.distancia;
+
+            const y =
+                centroY +
+                Math.sin(giro) *
+                p.distancia *
+                .45;
+
+            ctx.beginPath();
+
+            ctx.arc(
+                x,
+                y,
+                p.tamaño,
+                0,
+                Math.PI * 2
+            );
+
+            const brillo =
+                Math.min(
+                    1,
+                    p.opacidad *
+                    (
+                        1 -
+                        p.distancia /
+                        (
+                            Math.min(
+                                window.innerWidth,
+                                window.innerHeight
+                            ) * .7
+                        )
+                    )
+                );
+
+            ctx.fillStyle =
+                `rgba(
+                    220,
+                    170,
+                    255,
+                    ${brillo}
+                )`;
+
+            ctx.fill();
+
+        }
+    );
+
+
+    /* CENTRO */
+
+    const gradiente =
+        ctx.createRadialGradient(
+            centroX,
+            centroY,
+            0,
+            centroX,
+            centroY,
+            Math.min(
+                window.innerWidth,
+                window.innerHeight
+            ) * .25
+        );
+
+    gradiente.addColorStop(
+        0,
+        "rgba(255,255,255,.35)"
+    );
+
+    gradiente.addColorStop(
+        .15,
+        "rgba(210,130,255,.2)"
+    );
+
+    gradiente.addColorStop(
+        .5,
+        "rgba(120,40,180,.08)"
+    );
+
+    gradiente.addColorStop(
+        1,
+        "rgba(0,0,0,0)"
+    );
+
+    ctx.fillStyle = gradiente;
+
+    ctx.fillRect(
+        0,
+        0,
+        window.innerWidth,
+        window.innerHeight
+    );
+
+    requestAnimationFrame(
+        dibujarGalaxia
+    );
+
+}
+
+
+dibujarGalaxia();
+
+
+/* CORAZONES */
+
+function crearCorazon(){
+
+    if(
+        contenido.style.display !== "block"
+    ){
+        return;
+    }
+
+    const corazon =
+        document.createElement("div");
+
+    corazon.className =
+        "corazon";
+
+    const corazones = [
+        "💜",
+        "💗",
+        "💖",
+        "💕",
+        "✨"
+    ];
+
+    corazon.textContent =
+        corazones[
+            Math.floor(
+                Math.random() *
+                corazones.length
+            )
+        ];
+
+    corazon.style.left =
+        Math.random() * 100 + "vw";
+
+    corazon.style.fontSize =
+        (
+            Math.random() * 18 + 14
+        ) + "px";
+
+    corazon.style.setProperty(
+        "--movimiento",
+        (
+            Math.random() * 160 - 80
+        ) + "px"
+    );
+
+    corazon.style.animationDuration =
+        (
+            Math.random() * 4 + 6
+        ) + "s";
+
+    document.body.appendChild(
+        corazon
+    );
+
+    setTimeout(
+        () => corazon.remove(),
+        10000
+    );
+}
+
+
+setInterval(
+    crearCorazon,
+    900
+);
+
+
+/* ESTRELLAS EXTRA */
+
+function crearEstrellaExtra(){
+
+    const estrella =
+        document.createElement("div");
+
+    estrella.className =
+        "estrella";
+
+    estrella.style.left =
+        Math.random() * 100 + "vw";
+
+    estrella.style.top =
+        Math.random() * 100 + "vh";
+
+    estrella.style.setProperty(
+        "--duracion",
+        (
+            Math.random() * 2 + 1
+        ) + "s"
+    );
+
+    document.body.appendChild(
+        estrella
+    );
+
+    setTimeout(
+        () => estrella.remove(),
+        4000
+    );
+}
+
+
+setInterval(
+    crearEstrellaExtra,
+    500
+);
+
+</script>
+
+</body>
+</html>
